@@ -2,11 +2,11 @@
 ./MANIFEST
 ./README
 ./Makefile.PL
-./Makefile
 ./MYMETA.json
 ./lib
 ./lib/Hardware
-./lib/Hardware/Awtrix.pm
 ./MYMETA.yml
 ./bin
+./bin/gradient_colorclock
+./bin/progressbar_counter
 ./bin/notify_awtrix
