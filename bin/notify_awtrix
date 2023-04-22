@@ -30,24 +30,40 @@ my %message = (
 
 
 GetOptions(\%message,
-  'm|message:s' => \$message{text},
-  'c|color:s'   => \$message{color},
-  'i|icon:i'    => \$message{icon},
-  'r|rainbow'   => \$message{rainbow},
-  'd|duration:i' => \$message{duration},
+  'm|message:s'    => \$message{text},
+  'c|color:s'      => \$message{color},
+  'i|icon:i'       => \$message{icon},
+  'r|rainbow'      => \$message{rainbow},
+  'd|duration:i'   => \$message{duration},
+  'b|background:s' => \$message{background},
+  'p|pushicon'     => \$message{pushIcon},
+  'progress:i'     => \$message{progress},
+  'hold'           => \$message{hold},
+
   'h|help' => sub {
     say qq{
       Usage: $0 [options]
 
-        -m, -message    the text to display
-        -c, -color      the color to be used
-        -i, -icon       the icon id to be used
-        -r, -rainbow    use rainbow mode
-        -d, -duration   the duration in seconds
+        -m, --message    the text to display
+        -l, --lowercase
+        -u, --uppercase
+        -c, --color      the color to be used
+        -b, --background the background color to be used
+        -r, --rainbow    use rainbow mode
+        -d, --duration   the duration in seconds
+        -i, --icon       the icon id to be used
+        -p, --pushicon   if the icon should be pushed to the display
+
+            --progress   display a progress bar under the text (integer 0-100)
+            --hold       hold the message on the display
+
+        -h, --help       this help
     };
 
     exit;
   },
 );
+
+%message = map { $_ => $message{$_} } grep { defined $message{$_} } keys %message;
 
 publish(\%message);
