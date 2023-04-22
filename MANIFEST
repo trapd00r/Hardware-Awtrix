@@ -1,0 +1,12 @@
+.
+./MANIFEST
+./README
+./Makefile.PL
+./Makefile
+./MYMETA.json
+./lib
+./lib/Hardware
+./lib/Hardware/Awtrix.pm
+./MYMETA.yml
+./bin
+./bin/notify_awtrix

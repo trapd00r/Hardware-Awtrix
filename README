@@ -1,0 +1,70 @@
+NAME
+      Hardware::Awtrix - Perl interface to Awtrix
+
+SYNOPSIS
+      use Hardware::Awtrix {
+        host     => $ENV{MQTT_HOST},
+        user     => $ENV{MQTT_USER},,
+        password => $ENV{MQTT_PASS},
+        topic    => $ENV{AWTRIX_NOTIFY_TOPIC},
+      };
+
+      my %message = (
+        text     => 'Hello world!',
+        color    => '#ffff00',
+        icon     => 1,
+        rainbow  => 'true',
+        duration => 15,
+      );
+
+      publish(\%message);
+
+DESCRIPTION
+    Simple module that allows you to send messages to your esp32-based
+    awtrix device using mqtt.
+
+    The topic would be somethins similar to "awtrix_d4924/notify".
+
+    The icons need to be downloaded to your device, and then referenced by
+    id. You can see those ids in the web interface of your flashed clock.
+
+    Recommended to disable all the apps on the clock itself. This way, the
+    clock will be blank until it receives a message.
+
+EXPORTS
+      publish
+
+FUNCTIONS
+  publish(\%message)
+NOTES
+    Would rather use the Net::MQTT::Simple module but I had zero luck
+    getting it to work with my specific broker.
+
+    Therefore, the mosquitto_pub command is used for now.
+
+TODO
+    Figure out all of the options that can be passed to the awtrix device.
+
+REPORTING BUGS
+    Report bugs and/or feature requests on rt.cpan.org, the repository issue
+    tracker or directly to m@japh.se
+
+AUTHOR
+      Magnus Woldrich
+      CPAN ID: WOLDRICH
+      m@japh.se
+      japh@irc.libera.chat #perl
+      L<~/|http://japh.se>
+      L<git|http://github.com/trapd00r>
+
+CONTRIBUTORS
+    None required yet.
+
+COPYRIGHT
+    Copyright 2023- THIS MODULEs "AUTHOR" and "CONTRIBUTORS" as listed
+    above.
+
+LICENSE
+    This library is free software; you may redistribute it and/or modify it
+    under the same terms as Perl itself.
+

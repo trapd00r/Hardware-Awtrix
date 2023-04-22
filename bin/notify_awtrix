@@ -1,0 +1,53 @@
+#!/usr/bin/perl
+# notify_awtrix
+use strict;
+use warnings FATAL => 'all';
+
+use utf8;
+use open qw(:std :utf8);
+
+use feature 'say';
+
+use Getopt::Long;
+
+use Hardware::Awtrix {
+  host     => $ENV{MQTT_HOST},
+  user     => $ENV{MQTT_USER},,
+  password => $ENV{MQTT_PASS},
+  topic    => $ENV{AWTRIX_NOTIFY_TOPIC},
+};
+
+
+# defaults
+my %message = (
+  text     => 'Hello World',
+  color    => '#fff',
+  icon     => 0,
+  duration => 15,
+);
+
+! scalar @ARGV and @ARGV = '-h';
+
+
+GetOptions(\%message,
+  'm|message:s' => \$message{text},
+  'c|color:s'   => \$message{color},
+  'i|icon:i'    => \$message{icon},
+  'r|rainbow'   => \$message{rainbow},
+  'd|duration:i' => \$message{duration},
+  'h|help' => sub {
+    say qq{
+      Usage: $0 [options]
+
+        -m, -message    the text to display
+        -c, -color      the color to be used
+        -i, -icon       the icon id to be used
+        -r, -rainbow    use rainbow mode
+        -d, -duration   the duration in seconds
+    };
+
+    exit;
+  },
+);
+
+publish(\%message);
