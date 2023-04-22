@@ -1,0 +1,2 @@
+#!/bin/sh
+while true; do notify_awtrix -m "$(date +%H\ %M)" -c "#$(date +%H%M%S)"; sleep 1; done
