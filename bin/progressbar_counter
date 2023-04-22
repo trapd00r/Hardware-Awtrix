@@ -1,0 +1,2 @@
+#!/bin/sh
+for x in {0..100}; do notify_awtrix -m $x --progress $x; sleep 1; done; for x in {100..0}; do notify_awtrix -m $x --progress $x; sleep 1; done 
