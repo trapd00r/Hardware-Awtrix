@@ -1,0 +1,2 @@
+#!/bin/sh
+while true; do perl notify_awtrix -m $(mpc --format "%date%"|perl -pe 's/-//g;s/(.{4}).*/$1/') -c '#00ad00'; sleep 1; done
